@@ -1,2 +1,13 @@
 .env
 /ragenv/
+
+data/faiss_index/
+
+/logs
+hr_assistant/__pycache__
+
+.venv
+/__pycache__
+
+/*.png
+

@@ -2,7 +2,6 @@
 
 Run with:  streamlit run app.py
 """
-
 import streamlit as st
 
 from hr_assistant.logger import get_logger

@@ -2,7 +2,8 @@
 
 Run with:  python main.py
 """
-
+from dotenv import load_dotenv
+load_dotenv()  
 from hr_assistant.pipeline import ask , build_hr_assistant
 from hr_assistant.logger import get_logger
 logger = get_logger(__name__)

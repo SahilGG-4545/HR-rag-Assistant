@@ -28,7 +28,8 @@ logger = get_logger(__name__)
 # my main Model - application
 # model routing
 
-PRIMARY_PROVIDER = "@hrpolicy"
+PRIMARY_PROVIDER = "@rag1"
+JUDGE_PROVIDER = "@judge"
 
 
 # acces our gateway
@@ -42,9 +43,20 @@ def get_gateway_llm() -> ChatOpenAI:
     headers = createHeaders(api_key=config.PORTKEY_API_KEY,
                 provider=PRIMARY_PROVIDER)
     return ChatOpenAI(
-        api_key= "portkey",  # dummyy
+        api_key= config.PORTKEY_API_KEY, 
         base_url=PORTKEY_GATEWAY_URL,
         model=config.LLM_MODEL_NAME,
+        default_headers=headers)
+
+def get_judge_llm() -> ChatOpenAI:
+    """Return a chat model routed through Portkey (no config/fallback - see module docstring)."""
+    logger.info("Routing LLM calls through Portkey (provider=%s)", JUDGE_PROVIDER)
+    headers = createHeaders(api_key=config.PORTKEY_API_KEY,
+                provider=JUDGE_PROVIDER)
+    return ChatOpenAI(
+        api_key= config.PORTKEY_API_KEY, 
+        base_url=PORTKEY_GATEWAY_URL,
+        model=config.JUDGE_MODEL_NAME,
         default_headers=headers)
 
 ## user 

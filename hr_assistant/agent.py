@@ -17,3 +17,4 @@ def create_hr_agent(llm, tools):
                         system_prompt=config.SYSTEM_PROMPT)
     logger.info("HR agent ready")
     return agent
+

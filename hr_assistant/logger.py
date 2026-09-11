@@ -1,5 +1,4 @@
 """Step 0: shared logger used by every other step.
-
 Every module in this app asks this file for a logger instead of
 setting up its own. That way all logs (from document loading to the
 final answer) end up in one place, in one consistent format.

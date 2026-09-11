@@ -31,6 +31,10 @@ streamlit
 
 portkey-ai
 langchain-openai
-
+langchain-google-genai
 ## every gateway  -- gives you an openai compatible code 
 
+
+
+# Evaluation
+openevals

@@ -16,7 +16,7 @@ from langchain_groq import ChatGroq
 
 from hr_assistant import config
 
-# from hr_assistant.config import GUARD_MODEL_NAME
+from hr_assistant.config import GUARD_MODEL_NAME
 
 from hr_assistant.logger import get_logger
 
@@ -135,8 +135,8 @@ def check_input(question: str) -> tuple[bool, str]:
         logger.warning("Input guard BLOCKED question: %s | reason: %s", question, reason)
     return is_safe, reason
 
-#output safety
 
+#output safety
 def check_output(answer: str) -> tuple[bool, str]:
     """Check the agent's answer before showing it to the user."""
     is_safe, reason = _check_safety(answer, OUTPUT_POLICY)

@@ -3,8 +3,6 @@
 This is the single entry point that main.py (CLI) and app.py (Streamlit)
 both call. Each step is handled by its own small module.
 """
-
-
 from hr_assistant import config
 from hr_assistant.agent import create_hr_agent
 from hr_assistant.document_loader import load_document
@@ -27,7 +25,6 @@ logger = get_logger(__name__)
 
 
 # data ingestion
-
 def build_vector_store_for_document(file_path: str = config.DATA_FILE_PATH):
     """Load + split + embed the document, 
     reusing the Qdrant Cloud collection if we have one."""
@@ -85,7 +82,4 @@ def ask(agent, question: str) -> str:
     if not output_is_safe:
         return REFUSAL_MESSAGE
     
-    
     return answer
-
-

@@ -1,6 +1,5 @@
 """Step 4: store chunk embeddings in Qdrant Cloud so we can search them later."""
-
-
+import os
 from langchain_qdrant import QdrantVectorStore
 from qdrant_client import QdrantClient
 
@@ -10,9 +9,7 @@ from hr_assistant.logger import get_logger
 
 logger = get_logger(__name__)
 
-
 # build_vector_store
-
 def build_vector_store(chunks):
     """Embed every chunk and upload it into a Qdrant Cloud collection."""
     logger.info(
@@ -31,7 +28,7 @@ def build_vector_store(chunks):
     logger.info("Uploaded to Qdrant collection '%s'", config.QDRANT_COLLECTION_NAME)
     return vector_store
 
-
+    
 def load_vector_store():
     """Connect to a Qdrant Cloud collection that was already built before."""
     logger.info("Connecting to existing Qdrant collection '%s'", config.QDRANT_COLLECTION_NAME)
@@ -42,7 +39,6 @@ def load_vector_store():
         api_key=config.QDRANT_API_KEY,
         collection_name=config.QDRANT_COLLECTION_NAME,
     )
-
 
 def vector_store_exists() -> bool:
     """Check if the Qdrant Cloud collection already exists."""
