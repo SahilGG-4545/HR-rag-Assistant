@@ -11,30 +11,17 @@ langchain-community
 langchain-groq
 langchain-text-splitters
 
-
 # vector store
-
 langchain-qdrant
 qdrant-client
 
-
-# notebook
-jupyter
-ipykernel
-
-
 # web app 
-
 streamlit
 
 # LLM gateways
-
 portkey-ai
 langchain-openai
-langchain-google-genai
-## every gateway  -- gives you an openai compatible code 
-
-
+# every gateway  -- gives you an openai compatible code 
 
 # Evaluation
 openevals
