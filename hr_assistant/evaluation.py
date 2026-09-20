@@ -5,10 +5,8 @@ of test questions.
 Unlike tracing (which just records what happened), 
 evaluation runs the
 agent against a known set of question/reference-answer 
-pairs and scores
-each answer using a second LLM as a judge.
-Results are uploaded to
-LangSmith as a Dataset + Experiment, 
+pairs and scores each answer using a second LLM as a judge.
+Results are uploaded to LangSmith as a Dataset + Experiment, 
 so quality can be compared across
 runs (after a prompt change, a new model, a new guardrail, etc).
 
@@ -19,6 +17,8 @@ but a different
 underlying model (JUDGE_MODEL_NAME) - 
 so it isn't grading its own
 output verbatim, without needing a second slug set up.
+groundedness: Retrieved Documents + Generated Answer ==> "Is the generated answer supported by the retrieved documents?"
+Correctness uses:Question + Generated Answer + Reference Answer ==>"Does the generated answer match the expected/correct answer?"
 """
 
 
@@ -29,7 +29,7 @@ from openevals.prompts import CORRECTNESS_PROMPT, RAG_GROUNDEDNESS_PROMPT
 from portkey_ai import createHeaders, PORTKEY_GATEWAY_URL
 
 from hr_assistant import config
-from hr_assistant.gateway import PRIMARY_PROVIDER, JUDGE_PROVIDER
+from hr_assistant.gateway import JUDGE_PROVIDER
 from hr_assistant.logger import get_logger
 from hr_assistant.pipeline import ask, build_hr_assistant
 from hr_assistant.vector_store import get_retriever, load_vector_store
@@ -66,12 +66,8 @@ JUDGE_MODEL_NAME = "openai/gpt-oss-20b"
 
 def _get_judge_llm() -> ChatOpenAI:
     """Return a judge model routed through Portkey, same slug as the main app."""
-    headers = createHeaders(api_key=config.PORTKEY_API_KEY, 
-            provider=JUDGE_PROVIDER)
-    return ChatOpenAI(api_key="portkey", 
-        base_url=PORTKEY_GATEWAY_URL, 
-        default_headers=headers, 
-        model=JUDGE_MODEL_NAME)
+    headers = createHeaders(api_key=config.PORTKEY_API_KEY, provider=JUDGE_PROVIDER)
+    return ChatOpenAI(api_key="portkey", base_url=PORTKEY_GATEWAY_URL, default_headers=headers, model=JUDGE_MODEL_NAME)
     
 # if dataset is there reuse it , if not create a new dataset 
 # question paper 
