@@ -22,7 +22,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  AWS_REGION: eu-east-1
+  AWS_REGION: us-east-1
   ECR_REPOSITORY: hr-assistant
   CONTAINER_NAME: hr-assistant
   APP_PORT: 8501
