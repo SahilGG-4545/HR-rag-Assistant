@@ -32,3 +32,10 @@ logs/
 Thumbs.db
 .vscode/
 .idea/
+
+# secret keys
+
+hr-rag_accessKeys.csv
+key-to-connect.pem
+
+/DOCS
